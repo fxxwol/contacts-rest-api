@@ -1,10 +1,9 @@
-const contacts = require('../models/contacts')
-const { HttpError, ctrlWrapper } = require('../helpers')
-const { addSchema } = require('../schemas')
+const { PhoneBook, schemas: {addSchema} } = require('../models/contact')
+const { ctrlWrapper, HttpError } = require('../helpers')
 
 const listContacts = async (req, res, next) => {
     try {
-        const result = await contacts.listContacts();
+        const result = await PhoneBook.find({})
         res.json(result);
     } catch (error) {
         next(error);
@@ -14,7 +13,7 @@ const listContacts = async (req, res, next) => {
 const getContactById = async (req, res, next) => {
     try {
         const { contactId } = req.params;
-        const result = await contacts.getContactById(contactId)
+        const result = await PhoneBook.findById(contactId)
         if (!result) {
             throw HttpError(404, 'Not Found')
         }
@@ -30,7 +29,7 @@ const addContact = async (req, res, next) => {
         if (error) {
             throw HttpError(400, error.message)
         }
-        const result = await contacts.addContact(req.body);
+        const result = await PhoneBook.create(req.body);
         res.status(201).json(result);
     } catch (error) {
         next(error)
@@ -44,7 +43,7 @@ const updateContact = async (req, res, next) => {
         if (error) {
             throw HttpError(400, error.message)
         }
-        const result = await contacts.updateContact(contactId, req.body)
+        const result = await PhoneBook.findByIdAndUpdate(contactId, req.body, {new: true})
         if (!result) {
             throw HttpError(404, "Not found");
         }
@@ -57,7 +56,7 @@ const updateContact = async (req, res, next) => {
 const removeContact = async (req, res, next) => {
     try {
         const { contactId } = req.params;
-        const result = await contacts.removeContact(contactId)
+        const result = await PhoneBook.findByIdAndDelete(contactId)
         if (!result) {
             throw HttpError(404, 'Not Found')
         }

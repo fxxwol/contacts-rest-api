@@ -1,11 +1,11 @@
-const app = require('./app')
 const mongoose = require("mongoose");
+const app = require('./app')
 
-const { DB_HOST} = process.env;
+const DB = process.env.DB_HOST;
 
 mongoose.set('strictQuery', true)
 
-mongoose.connect(DB_HOST).then(() => {
+mongoose.connect(DB).then(() => {
   app.listen(3000)
   console.log("Database connection successful")
 }).catch (error => {
