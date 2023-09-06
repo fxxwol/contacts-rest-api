@@ -1,0 +1,61 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  D:\Git\mingw64\bin;D:\Git\usr\bin;C:\Users\User\bin;C:\Python311\Scripts;C:\Python311;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;D:\Git\cmd;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\Azure Data Studio\bin;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;D:\Program Files\Rational\common;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\.dotnet\tools;C:\Users\User\AppData\Local\GitHubDesktop\bin;C:\Program Files\Azure Data Studio\bin;D:\Program Files\IntelliJ IDEA Community Edition 2022.2.1\bin;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\User\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.14.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\User\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1130:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:270:20)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  {
+    "name": "template",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "cross-env NODE_ENV=production node ./server.js",
+      "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+      "lint": "eslint **/*.js",
+      "lint:fix": "eslint --fix **/*.js"
+    },
+    "dependencies": {
+      "cors": "2.8.5",
+      "cross-env": "7.0.3",
+      "express": "4.17.1",
+      "morgan": "1.10.0"
+    },
+    "devDependencies": {
+      "eslint": "7.19.0",
+      "eslint-config-prettier": "^8.3.0",
+      "eslint-config-standard": "16.0.3",
+      "eslint-plugin-import": "2.25.3",
+      "eslint-plugin-node": "^11.1.0",
+      "eslint-plugin-promise": "5.2.0",
+      "nodemon": "2.0.15"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
