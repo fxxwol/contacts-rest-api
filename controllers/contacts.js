@@ -41,8 +41,8 @@ const updateContact = async (req, res) => {
     res.json(result)
 }
 
+
 const updateStatus = async (req, res) => {
-    console.log(req)
     const { contactId } = req.params;
     const { error } = updateFavoriteSchema.validate(req.body);
     if (error) {
@@ -53,7 +53,6 @@ const updateStatus = async (req, res) => {
         throw HttpError(404, "Not found");
     }
     res.json(result)
-
 }
 
 const removeContact = async (req, res) => {
@@ -64,6 +63,7 @@ const removeContact = async (req, res) => {
     }
     res.json(result)
 }
+
 module.exports = {
     listContacts: ctrlWrapper(listContacts),
     getContactById: ctrlWrapper(getContactById),

@@ -1,5 +1,3 @@
-const { listContacts, getContactById, addContact, updateContact, removeContact } = require('../controllers/contacts')
+const ctrl = require('../controllers/contacts')
 
-module.exports = {
-    listContacts, getContactById, addContact, updateContact, removeContact
-}
+module.exports = ctrl
