@@ -2,7 +2,7 @@ const express = require('express')
 const { ctrl } = require('../../controllers/')
 const { isValidId, authenticate } = require('../../middlewares')
 const router = express.Router()
-router.get('/', ctrl.listContacts)
+router.get('/', authenticate, ctrl.listContacts)
 
 router.get('/:contactId', authenticate, isValidId, ctrl.getContactById)
 
