@@ -1,3 +1,3 @@
 const ctrl = require('../controllers/contacts')
-
-module.exports = ctrl
+const userCtrl = require('../controllers/users')
+module.exports = { ctrl, userCtrl }

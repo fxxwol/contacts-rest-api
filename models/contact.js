@@ -1,6 +1,6 @@
 const Joi = require('joi')
 const { Schema, model } = require('mongoose')
-const {handleMongooseError} = require('../middlewares')
+const { handleMongooseError } = require('../middlewares')
 
 const phonePattern = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
 
@@ -21,6 +21,10 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    }
   }
   , { versionKey: false })
 
