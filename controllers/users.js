@@ -56,7 +56,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     const { _id } = req.user;
     await User.findByIdAndUpdate(_id, { token: '' })
-    
+
     res.json({
         message: "Logout success"
     })
@@ -69,9 +69,25 @@ const current = async (req, res) => {
     })
 }
 
+const changeSubscription = async (req, res) => {
+    const { subscription } = req.body;
+    const { _id } = req.user;
+
+    const allowedSubscriptions = ['starter', 'pro', 'business'];
+
+    if (!allowedSubscriptions.includes(subscription)) {
+         throw HttpError(400);
+    }
+
+    const result = await User.findByIdAndUpdate(_id, { subscription }, { new: true });
+    res.json(result);
+}
+
+
 module.exports = {
     register: ctrlWrapper(register),
     login: ctrlWrapper(login),
     logout: ctrlWrapper(logout),
-    current: ctrlWrapper(current)
+    current: ctrlWrapper(current),
+    changeSubscription: ctrlWrapper(changeSubscription)
 }
