@@ -2,14 +2,20 @@ const { PhoneBook, schemas: { addSchema, updateFavoriteSchema } } = require('../
 const { ctrlWrapper, HttpError } = require('../helpers')
 
 const listContacts = async (req, res) => {
-
-    const result = await PhoneBook.find({})
+    const { _id: owner } = req.user;
+    const { page = 1, limit = 20, favorite } = req.query;
+    const skip = (page - 1) * limit;
+    let result;
+    if (favorite) {
+        result = await PhoneBook.find({ owner, favorite }).populate("owner", "email")
+    }
+    else {
+        result = await PhoneBook.find({ owner }, "", { skip, limit }).populate("owner", "email");
+    }
     res.json(result);
 
 }
-
 const getContactById = async (req, res) => {
-
     const { contactId } = req.params;
     const result = await PhoneBook.findById(contactId)
     if (!result) {
@@ -19,12 +25,12 @@ const getContactById = async (req, res) => {
 }
 
 const addContact = async (req, res) => {
-
+    const { _id: owner } = req.user;
     const { error } = addSchema.validate(req.body);
     if (error) {
         throw HttpError(400, error.message)
     }
-    const result = await PhoneBook.create(req.body);
+    const result = await PhoneBook.create({ ...req.body, owner });
     res.status(201).json(result);
 }
 
