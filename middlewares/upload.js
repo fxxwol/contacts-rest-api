@@ -6,6 +6,7 @@ const tmpDir = path.join(__dirname, "../", "tmp");
 const multerConfig = multer.diskStorage({
     destination: tmpDir,
     filename: (req, file, cb) => {
+        console.log(file)
         cb(null, file.originalname);
     }
 });
