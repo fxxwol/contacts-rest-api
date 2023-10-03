@@ -1,8 +1,8 @@
 const Joi = require('joi')
 const { Schema, model } = require('mongoose')
 const { handleMongooseError } = require('../middlewares')
+const { patterns } = require("../helpers")
 
-const phonePattern = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
 
 const contactSchema = new Schema(
   {
@@ -15,7 +15,7 @@ const contactSchema = new Schema(
     },
     phone: {
       type: String,
-      match: phonePattern,
+      match: patterns.phonePattern,
     },
     favorite: {
       type: Boolean,
@@ -35,7 +35,7 @@ const PhoneBook = model("contact", contactSchema)
 const addSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required(),
-  phone: Joi.string().regex(phonePattern).required(),
+  phone: Joi.string().regex(patterns.phonePattern).required(),
   favorite: Joi.boolean(),
 })
 
